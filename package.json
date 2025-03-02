@@ -1,0 +1,29 @@
+{
+  "type": "module",
+  "name": "tareas_pendientes",
+  "version": "1.0.0",
+  "main": "src/app.js",
+  "scripts": {
+    "start": "node src/app.js",
+    "dev": "nodemon src/app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "tareas-pendientes",
+    "to-do-list",
+    "CRUD",
+    "autorización",
+    "autenticación",
+    "Node.js",
+    "Express"
+  ],
+  "author": "GabrielDev",
+  "license": "ISC",
+  "description": "Aplicacion de tareas pendientes con funcionalidades CRUD, autorización y autenticación",
+  "devDependencies": {
+    "nodemon": "^3.1.9"
+  },
+  "dependencies": {
+    "express": "^4.21.2"
+  }
+}
