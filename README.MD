@@ -1,5 +1,7 @@
 ### Tareas Pendientes
 
+#
+
 1. Base de Datos
    MongoDB + Mongoose (NoSQL, flexible y fácil de escalar).
    PostgreSQL + Sequelize (SQL, ideal para estructuras bien definidas).
