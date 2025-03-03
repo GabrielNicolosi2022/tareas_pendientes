@@ -8,7 +8,7 @@
  * Categorizar usuarios.
  */
 
-import { formatedUser } from "../dto/user.dto.js";
+import { formatedUser, showFormattedUser } from "../dto/user.dto.js";
 import {
   validateFormatData,
   validateUserFields,
@@ -21,11 +21,34 @@ const log = getLogger();
 
 /* CONTROLLERS */
 
-const getAllUsers = (req, res) => {};
+const getAllUsers = async (req, res) => {
+  try {
+    const data = await usersServices.getAll();
+    log.debug("data: ", data);
+    if (!data) {
+      return log.error("No hay usuarios para mostrar");
+    }
+    const users = data.map((user) => showFormattedUser(user));
+    log.debug("users: ", users);
 
-const getUsersById = (req, res) => {};
+    return res.status(200).json({
+      status: "success",
+      message: "Usuarios encontrados",
+      payload: users,
+    });
+  } catch (error) {
+    log.fatal(`Error al intentar mostrar usuarios: ${error}`, {
+      error,
+    });
+    return res
+      .status(500)
+      .json({ status: error, message: "Internal Server Error" });
+  }
+};
 
-const getUsersByEmail = (req, res) => {};
+const getUsersById = async (req, res) => {};
+
+const getUsersByEmail = async (req, res) => {};
 
 const createUser = async (req, res) => {
   const data = req.body;
@@ -82,9 +105,9 @@ const createUser = async (req, res) => {
   }
 };
 
-const updateUserById = (req, res) => {};
+const updateUserById = async (req, res) => {};
 
-const deleteUser = (req, res) => {};
+const deleteUser = async (req, res) => {};
 
 export {
   getAllUsers,
