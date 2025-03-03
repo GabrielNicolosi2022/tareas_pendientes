@@ -1,17 +1,35 @@
 import userModel from "../models/user.model.js";
 
-const getAll = async () => await userModel.find();
+const getAll = async () => await userModel.find().lean();
 
-const getByEmail = async (email) => await userModel.findOne({ email: email });
+const getById = async (id) => await userModel.findOne({ _id: id }).exec();
 
-const create = async (data) => await userModel.create(data).exec();
+const getByEmail = async (email) =>
+  await userModel.findOne({ email: email }).exec();
+
+const findUserByEmail = async (email) =>
+  await userModel.findOne({ email: email }).lean();
+
+const create = async (data) => await userModel.create(data);
 
 const updateById = async (id, data) =>
-  await userModel.findByIdAndUpdate({ _id: id, data: data });
+  await userModel.findByIdAndUpdate({ _id: id }, { $set: data }, { new: true });
 
-const updatePassword = async (id, password) =>
-  await userModel.findByIdAndUpdate({ _id: id, password: password });
+const updatePasswordByEmail = async (email, hashedPassword) =>
+  await userModel.findByIdAndUpdate(
+    { email: email },
+    { $set: { password: hashedPassword } }
+  );
 
 const deleteById = async (id) => await userModel.findByIdAndDelete({ _id: id });
 
-export { getAll, getByEmail, create, updateById, updatePassword, deleteById };
+export {
+  getAll,
+  getById,
+  getByEmail,
+  findUserByEmail,
+  create,
+  updateById,
+  updatePasswordByEmail,
+  deleteById,
+};
