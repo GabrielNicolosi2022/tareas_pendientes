@@ -5,6 +5,8 @@ export const formatedUser = (data, hashedPassword) => ({
   email: data.email,
   phone: data.phone,
   role: data.role,
+  position: data.position,
+  category: data.category,
   password: hashedPassword,
 });
 
@@ -16,4 +18,6 @@ export const showFormattedUser = (user) => ({
   email: user.email,
   phone: user.phone,
   role: user.role,
+  position: user.position,
+  category: user.category,
 });

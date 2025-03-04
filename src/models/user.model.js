@@ -5,15 +5,13 @@ const userCollection = "Users";
 const userSchema = new mongoose.Schema({
   first_name: {
     type: String,
-    required: true,
   },
   last_name: {
     type: String,
-    required: true,
   },
   username: {
     type: String,
-    required: true,
+    unique: true,
   },
   email: {
     type: String,
@@ -22,12 +20,17 @@ const userSchema = new mongoose.Schema({
   },
   phone: {
     type: String,
-    // required: true,
   },
   role: {
     type: String,
     enum: ["user", "admin"],
     default: "user",
+  },
+  position: {
+    type: String,
+  },
+  category: {
+    type: String,
   },
   password: {
     type: String,

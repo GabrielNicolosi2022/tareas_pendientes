@@ -12,7 +12,7 @@ import { formatedUser, showFormattedUser } from "../dto/user.dto.js";
 import {
   validateFormatData,
   validateUserFields,
-} from "../helpers/fotmatValidations.helpers.js";
+} from "../helpers/userValidations.helpers.js";
 import * as usersServices from "../services/user.services.js";
 import getLogger from "../utils/log.utils.js";
 import { createHash } from "../utils/validations.utils.js";
@@ -33,7 +33,7 @@ const getAllUsers = async (req, res) => {
 
     return res.status(200).json({
       status: "success",
-      message: "Usuarios encontrados",
+      message: `${users.length} Usuarios encontrados`,
       payload: users,
     });
   } catch (error) {
